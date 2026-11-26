@@ -1,0 +1,1 @@
+{"description":"HomeLedger — a working household budget site: dashboard, transactions, budgets, savings goals, bills and reports, all offline.","name":"homeledger-household-budget","private":true,"scripts":{"build":"mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts","serve":"node serve.ts"},"type":"module","version":"1.0.0"}

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HomeLedger — Household Budget</title>
+<meta name="description" content="HomeLedger: the Alvarez family's household budget — income, spending, budgets, savings goals, bills and reports, all in one place.">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="style.css">
+<script type="module" src="main.js"></script>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#/">HomeLedger</a>
+  <nav class="nav" aria-label="Sections">
+    <a href="#/" data-route="">Dashboard</a>
+    <a href="#/transactions" data-route="transactions">Transactions</a>
+    <a href="#/budgets" data-route="budgets">Budgets</a>
+    <a href="#/goals" data-route="goals">Savings goals</a>
+    <a href="#/bills" data-route="bills">Bills</a>
+    <a href="#/reports" data-route="reports">Reports</a>
+  </nav>
+  <div class="month-pick">
+    <label for="monthSelect">Month</label>
+    <select id="monthSelect">
+      <option value="2026-11" selected>November 2026</option>
+      <option value="2026-10">October 2026</option>
+      <option value="2026-09">September 2026</option>
+    </select>
+  </div>
+</header>
+<main id="app" aria-live="polite"></main>
+<footer class="foot">
+  <p>HomeLedger keeps the Alvarez family's money in one place. Figures are the family's own records for the month shown; everything on this site works offline and your edits are saved on this device only.</p>
+  <p><a href="#/reports">Monthly report</a> · <a href="#/bills">Upcoming bills</a> · <a href="#/goals">Savings goals</a></p>
+</footer>
+</body>
+</html>
