@@ -12,7 +12,7 @@
 // Outside the grader's container, MAKEFUN_OUTPUT_DIR stands in for /output:
 //   mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
 
-import { cpSync, existsSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
+import { cpSync, existsSync, mkdirSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buildDossier } from './vendor/makefun-frontend.ts';
@@ -22,8 +22,12 @@ const out = process.env.MAKEFUN_OUTPUT_DIR ?? '/output';
 
 // Clear any stale files first, so the output holds exactly app/,
 // screenshots/ and dossier.json — a leftover file from an earlier run must
-// never ride along into the entry.
-rmSync(out, { recursive: true, force: true });
+// never ride along into the entry. Only the directory's *contents* are
+// removed, never the directory itself: the grader mounts /output inside a
+// read-only parent, so deleting the directory fails with EACCES (the dev
+// grade's exit-1). The directory itself is created if it does not exist.
+mkdirSync(out, { recursive: true });
+for (const entry of readdirSync(out)) rmSync(join(out, entry), { recursive: true, force: true });
 
 mkdirSync(out, { recursive: true });
 cpSync(join(here, 'app'), join(out, 'app'), { recursive: true });
